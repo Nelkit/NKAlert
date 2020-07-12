@@ -16,8 +16,8 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NKAlert"
-  spec.version      = "0.0.1"
-  spec.summary      = "NKAlert is a alternative to UIAlert of swift."
+  spec.version      = "0.0.2"
+  spec.summary      = "NKAlert is a small UI framework to show message in customs alerts is a alternative to UIAlert of swift."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
 			NKAlert is a alternative to UIAlert of swift.
                    DESC
 
-  spec.homepage     = "http://nelkit.dev/NKAlert"
+  spec.homepage     = "https://nelkit.dev/"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -81,7 +81,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
- spec.source       = { :git => "http://github.com/Nelkit/NKAlert.git", :tag => "#{spec.version}" }
+ spec.source       = { :git => "https://github.com/Nelkit/NKAlert.git", :tag => "#{spec.version}" }
  # spec.source       = { :http => 'file:' + __dir__ + "/" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -92,7 +92,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "NKAlert/Source/*.{swift}"
+  spec.source_files  = "NKAlert/Source/*.{swift}", "NKAlert/Source/Icons/*.{swift}"
   #spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
