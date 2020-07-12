@@ -1,8 +1,9 @@
 //
-//  NKFlatAlert.swift
-//  NKFlatAlert
+//  NKAlert.swift
+//  NKAlert
 //
-//  Created by Nelkit Chavez on 1/4/18.
+//  Created by Nelkit Chavez on 30/3/18.
+//  Copyright © 2018 Chakalon Company. All rights reserved.
 //
 
 import Foundation
@@ -12,7 +13,60 @@ public enum AlertStyle {
     case WARNING, SUCCESS, DANGER, INFO, INDICATOR
 }
 
-public class NKFlatAlert: UIView, Modal {
+protocol ModalDelegate {
+    func show(animated:Bool)
+    func dismiss(animated:Bool)
+    var backgroundView:UIView {get}
+    var dialogView:UIView {get set}
+}
+
+extension ModalDelegate where Self:UIView{
+    func showModal(animated:Bool, completion: @escaping ()->()){
+        if var topController = UIApplication.shared.windows.first!.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            topController.view.addSubview(self)
+        }
+        
+        self.dialogView.transform = self.transform.translatedBy(x: 0, y: 400)
+        self.dialogView.alpha = 0
+        self.backgroundView.alpha = 0
+        if animated {
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: UIView.AnimationOptions(rawValue: 0), animations: {
+                self.dialogView.transform = self.transform.translatedBy(x: 0, y: 0)
+                self.dialogView.alpha = 1
+                self.backgroundView.alpha = 1
+            }, completion: { (completed) in
+                completion()
+            })
+        }else{
+            self.dialogView.transform = self.transform.translatedBy(x: 0, y: 0)
+            self.dialogView.alpha = 1
+            self.backgroundView.alpha = 1
+        }
+    }
+    
+    func hideModal(animated:Bool, completion: @escaping ()->()){
+        if animated {
+            UIView.animate(withDuration:0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIView.AnimationOptions(rawValue: 0), animations: {
+                self.dialogView.transform = self.transform.translatedBy(x: 0, y: 200)
+                self.dialogView.alpha = 0
+                self.backgroundView.alpha = 0
+            }, completion: { (completed) in
+                self.removeFromSuperview()
+                completion()
+            })
+        }else{
+            self.removeFromSuperview()
+        }
+        
+    }
+}
+
+public class NKAlert: UIView, ModalDelegate {
+
+    
     var backgroundView = UIView()
     var dialogView = UIView()
     var iconView = UIView()
@@ -23,8 +77,8 @@ public class NKFlatAlert: UIView, Modal {
     var orientationListenerWasAdded: Bool = false
     let displayedOnCompactDevice = UIDevice.current.userInterfaceIdiom == .phone
     
-    var okButtonView = MaterialButton(type: .system)
-    var cancelButtonView = MaterialButton(type: .system)
+    var okButtonView = Button(type: .system)
+    var cancelButtonView = Button(type: .system)
     
     public convenience init(title:String, description:String, style:AlertStyle) {
         
@@ -47,8 +101,14 @@ public class NKFlatAlert: UIView, Modal {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func show(animated:Bool){
-        showModal(animated: animated)
+    public func show(animated: Bool) {
+        showModal(animated: animated, completion: {})
+    }
+    
+    public func show(animated:Bool, completion: @escaping ()->()){
+        showModal(animated: animated, completion: {
+            completion()
+        })
     }
     
     
@@ -58,13 +118,13 @@ public class NKFlatAlert: UIView, Modal {
         removeAutoConstraintsFromView(vs: [dialogView, backgroundView,iconView,titleView,descriptionView,bottomContainerView, okButtonView,cancelButtonView, containerButttons])
         
         backgroundView.frame = frame
-        backgroundView.backgroundColor = UIColor.black
+        backgroundView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.4)
         backgroundView.alpha = 0.6
         if(!orientationListenerWasAdded){
             NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(self.onOrientationChanged),
-                name: .UIDeviceOrientationDidChange,
+                name: UIDevice.orientationDidChangeNotification,
                 object: nil
             )
             orientationListenerWasAdded = true
@@ -95,30 +155,30 @@ public class NKFlatAlert: UIView, Modal {
         titleView.text = title.uppercased()
         titleView.textAlignment = .center
         titleView.numberOfLines = 0
-        titleView.textColor = Constants.Colors.PrimaryText
+        titleView.textColor = UIColor.black
         titleView.font = UIFont.boldSystemFont(ofSize: 18)
         titleView.leadingAnchor.constraint(
             equalTo: dialogView.leadingAnchor,
-            constant:Constants.UI.staticMarginBox
+            constant:10
             ).isActive = true
         titleView.trailingAnchor.constraint(
             equalTo: dialogView.trailingAnchor,
-            constant:-Constants.UI.staticMarginBox
+            constant:-10
             ).isActive = true
         titleView.topAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 10).isActive = true
         
         dialogView.addSubview(descriptionView)
         descriptionView.textAlignment = .center
         descriptionView.numberOfLines = 0
-        descriptionView.textColor = Constants.Colors.SecondaryText
+        descriptionView.textColor = .black
         descriptionView.font = UIFont.systemFont(ofSize: 14)
         descriptionView.leadingAnchor.constraint(
             equalTo: dialogView.leadingAnchor,
-            constant:Constants.UI.staticMarginBox
+            constant:10
             ).isActive = true
         descriptionView.trailingAnchor.constraint(
             equalTo: dialogView.trailingAnchor,
-            constant:-Constants.UI.staticMarginBox
+            constant:-10
             ).isActive = true
         descriptionView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 10).isActive = true
         
@@ -164,11 +224,10 @@ public class NKFlatAlert: UIView, Modal {
     public func setButtons(titleOk:String){
         bottomContainerView.addSubview(okButtonView)
         okButtonView.isUserInteractionEnabled = true
-        okButtonView.backgroundColor = .white
         okButtonView.setTitleColor(.white, for: .normal)
         okButtonView.layer.cornerRadius = 8
         okButtonView.setTitle(titleOk, for: .normal)
-        okButtonView.backgroundColor = Constants.Colors.SuccessColor
+        okButtonView.backgroundColor = Colors.success
         okButtonView.centerXAnchor.constraint(equalTo: bottomContainerView.centerXAnchor).isActive = true
         okButtonView.heightAnchor.constraint(equalToConstant:50).isActive = true
         okButtonView.widthAnchor.constraint(equalToConstant:150).isActive = true
@@ -180,11 +239,10 @@ public class NKFlatAlert: UIView, Modal {
     public func setButtons(titleOk:String, eventOk: Selector, target: Any?){
         bottomContainerView.addSubview(okButtonView)
         okButtonView.isUserInteractionEnabled = true
-        okButtonView.backgroundColor = .white
         okButtonView.setTitleColor(.white, for: .normal)
         okButtonView.layer.cornerRadius = 8
         okButtonView.setTitle(titleOk, for: .normal)
-        okButtonView.backgroundColor = Constants.Colors.SuccessColor
+        okButtonView.backgroundColor = Colors.success
         okButtonView.centerXAnchor.constraint(equalTo: bottomContainerView.centerXAnchor).isActive = true
         okButtonView.heightAnchor.constraint(equalToConstant:50).isActive = true
         okButtonView.widthAnchor.constraint(equalToConstant:150).isActive = true
@@ -212,22 +270,20 @@ public class NKFlatAlert: UIView, Modal {
         containerButttons.addArrangedSubview(cancelButtonView)
         cancelButtonView.titleLabel?.adjustsFontSizeToFitWidth = true
         cancelButtonView.titleLabel?.minimumScaleFactor = 0.4
-        cancelButtonView.backgroundColor = .white
         cancelButtonView.setTitleColor(.white, for: .normal)
         cancelButtonView.layer.cornerRadius = 8
         cancelButtonView.setTitle(titleCancel, for: .normal)
-        cancelButtonView.backgroundColor = Constants.Colors.SecondaryText
+        cancelButtonView.backgroundColor = Colors.danger
         cancelButtonView.heightAnchor.constraint(equalToConstant:50).isActive = true
         cancelButtonView.addTarget(self, action: #selector(self.didTappedOnBackgroundView), for: .touchUpInside)
         
         containerButttons.addArrangedSubview(okButtonView)
         okButtonView.titleLabel?.adjustsFontSizeToFitWidth = true
         okButtonView.titleLabel?.minimumScaleFactor = 0.4
-        okButtonView.backgroundColor = .white
         okButtonView.setTitleColor(.white, for: .normal)
         okButtonView.layer.cornerRadius = 8
         okButtonView.setTitle(titleOk, for: .normal)
-        okButtonView.backgroundColor = Constants.Colors.SuccessColor
+        okButtonView.backgroundColor = Colors.success
         okButtonView.heightAnchor.constraint(equalToConstant:50).isActive = true
         okButtonView.addTarget(target, action: eventOk, for: .touchUpInside)
         okButtonView.addTarget(self, action: #selector(self.didTappedOnBackgroundView), for: .touchUpInside)
@@ -251,11 +307,10 @@ public class NKFlatAlert: UIView, Modal {
         containerButttons.addArrangedSubview(cancelButtonView)
         cancelButtonView.titleLabel?.adjustsFontSizeToFitWidth = true
         cancelButtonView.titleLabel?.minimumScaleFactor = 0.4
-        cancelButtonView.backgroundColor = .white
         cancelButtonView.setTitleColor(.white, for: .normal)
         cancelButtonView.layer.cornerRadius = 8
         cancelButtonView.setTitle(titleCancel, for: .normal)
-        cancelButtonView.backgroundColor = Constants.Colors.SecondaryText
+        cancelButtonView.backgroundColor = Colors.danger
         cancelButtonView.heightAnchor.constraint(equalToConstant:50).isActive = true
         cancelButtonView.addTarget(target, action: eventCancel, for: .touchUpInside)
         cancelButtonView.addTarget(self, action: #selector(self.didTappedOnBackgroundView), for: .touchUpInside)
@@ -263,11 +318,10 @@ public class NKFlatAlert: UIView, Modal {
         containerButttons.addArrangedSubview(okButtonView)
         okButtonView.titleLabel?.adjustsFontSizeToFitWidth = true
         okButtonView.titleLabel?.minimumScaleFactor = 0.4
-        okButtonView.backgroundColor = .white
         okButtonView.setTitleColor(.white, for: .normal)
         okButtonView.layer.cornerRadius = 8
         okButtonView.setTitle(titleOk, for: .normal)
-        okButtonView.backgroundColor = Constants.Colors.SuccessColor
+        okButtonView.backgroundColor = Colors.success
         okButtonView.heightAnchor.constraint(equalToConstant:50).isActive = true
         okButtonView.addTarget(target, action: eventOk, for: .touchUpInside)
         okButtonView.addTarget(self, action: #selector(self.didTappedOnBackgroundView), for: .touchUpInside)
@@ -279,6 +333,10 @@ public class NKFlatAlert: UIView, Modal {
     
     @objc func didTappedOnBackgroundView(){
         dismiss(animated: true)
+    }
+    
+    func dismiss(animated: Bool) {
+        hideModal(animated: animated, completion: {})
     }
     
     func removeAutoConstraintsFromView(vs: Array<UIView>){

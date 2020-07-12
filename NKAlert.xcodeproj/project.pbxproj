@@ -11,13 +11,13 @@
 		840D83FE24BB8F3C00356B1A /* NKAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D83FD24BB8F3C00356B1A /* NKAlertTests.swift */; };
 		840D840024BB8F3C00356B1A /* NKAlert.h in Headers */ = {isa = PBXBuildFile; fileRef = 840D83F224BB8F3C00356B1A /* NKAlert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		840D841324BBA46B00356B1A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D841224BBA46B00356B1A /* Button.swift */; };
-		840D841624BBA8B800356B1A /* NKAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D841524BBA8B800356B1A /* NKAlert.swift */; };
 		840D841F24BBAB8F00356B1A /* InfoIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D841A24BBAB8F00356B1A /* InfoIcon.swift */; };
 		840D842024BBAB8F00356B1A /* WarningIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D841B24BBAB8F00356B1A /* WarningIcon.swift */; };
 		840D842124BBAB8F00356B1A /* SuccessIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D841C24BBAB8F00356B1A /* SuccessIcon.swift */; };
 		840D842224BBAB8F00356B1A /* DangerIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D841D24BBAB8F00356B1A /* DangerIcon.swift */; };
 		840D842324BBAB8F00356B1A /* SpinnerIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D841E24BBAB8F00356B1A /* SpinnerIcon.swift */; };
 		840D847024BBC06200356B1A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D846F24BBC06200356B1A /* Colors.swift */; };
+		8457CA3324BBD10C00127F93 /* NKAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457CA3224BBD10C00127F93 /* NKAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,13 +38,13 @@
 		840D83FD24BB8F3C00356B1A /* NKAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NKAlertTests.swift; sourceTree = "<group>"; };
 		840D83FF24BB8F3C00356B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		840D841224BBA46B00356B1A /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		840D841524BBA8B800356B1A /* NKAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NKAlert.swift; path = ../../../../../../Desktop/NKAlert.swift; sourceTree = "<group>"; };
 		840D841A24BBAB8F00356B1A /* InfoIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoIcon.swift; sourceTree = "<group>"; };
 		840D841B24BBAB8F00356B1A /* WarningIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarningIcon.swift; sourceTree = "<group>"; };
 		840D841C24BBAB8F00356B1A /* SuccessIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessIcon.swift; sourceTree = "<group>"; };
 		840D841D24BBAB8F00356B1A /* DangerIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DangerIcon.swift; sourceTree = "<group>"; };
 		840D841E24BBAB8F00356B1A /* SpinnerIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerIcon.swift; sourceTree = "<group>"; };
 		840D846F24BBC06200356B1A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		8457CA3224BBD10C00127F93 /* NKAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				840D841924BBAB5C00356B1A /* Icons */,
-				840D841524BBA8B800356B1A /* NKAlert.swift */,
+				8457CA3224BBD10C00127F93 /* NKAlert.swift */,
 				840D841224BBA46B00356B1A /* Button.swift */,
 				840D846F24BBC06200356B1A /* Colors.swift */,
 			);
@@ -236,7 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				840D841624BBA8B800356B1A /* NKAlert.swift in Sources */,
+				8457CA3324BBD10C00127F93 /* NKAlert.swift in Sources */,
 				840D847024BBC06200356B1A /* Colors.swift in Sources */,
 				840D842224BBAB8F00356B1A /* DangerIcon.swift in Sources */,
 				840D842124BBAB8F00356B1A /* SuccessIcon.swift in Sources */,
