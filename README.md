@@ -4,10 +4,10 @@
 NKAlert is a small UI framework to show message in custom alerts, is a alternative to native UIAlert of swift.
 
 <p align="center">
-  <img src="Screenshots/screenshot_1.PNG" width=250 alt="Icon"/>
-  <img src="Screenshots/screenshot_2.PNG" width=250 alt="Icon"/>
-  <img src="Screenshots/screenshot_3.PNG" width=250 alt="Icon"/>
-  <img src="Screenshots/screenshot_4.PNG" width=250 alt="Icon"/>
+  <img src="screenshots/screenshot_1.PNG" width=250 alt="Icon"/>
+  <img src="screenshots/screenshot_2.PNG" width=250 alt="Icon"/>
+  <img src="screenshots/screenshot_3.PNG" width=250 alt="Icon"/>
+  <img src="screenshots/screenshot_4.PNG" width=250 alt="Icon"/>
 </p>
 
 
