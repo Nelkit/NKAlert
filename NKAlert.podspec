@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "NKAlert"
-  spec.version      = "0.0.3"
+  spec.version      = "0.0.4"
   spec.summary      = "UI framework to show message in customs alerts is a alternative to UIAlert of swift."
   spec.description  = <<-DESC
     NKAlert is a small UI framework to show message in custom alerts, is a alternative to native UIAlert of swift.
