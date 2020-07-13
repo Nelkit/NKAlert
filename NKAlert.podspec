@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
     NKAlert is a small UI framework to show message in custom alerts, is a alternative to native UIAlert of swift.
   DESC
 
-  spec.homepage     = "https://github.com/Nelkit/NKAlert/README.md"
+  spec.homepage     = "https://github.com/Nelkit/NKAlert/blob/master/README.md"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
   spec.license      = { :type => "MIT", :file => "LICENSE" }
