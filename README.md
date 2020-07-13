@@ -18,10 +18,9 @@ NKAlert is a small UI framework to show message in custom alerts, is a alternati
 To integrate NKAlert into your Xcode project using CocoaPods, specify it in your Podfile and run pod install.
 
 ```
-platform :ios, '9.0'
-use_frameworks!
-
-pod 'NKAlert', :git => 'https://github.com/Nelkit/NKAlert.git'
+target 'MyApp' do
+  pod 'NKAlert', '~> 0.0'
+end
 ```
 
 #### Manually
