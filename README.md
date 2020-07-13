@@ -4,10 +4,10 @@
 NKAlert is a small UI framework to show message in custom alerts, is a alternative to native UIAlert of swift.
 
 <p align="center">
-  <img src="screenshots/screenshot_1.PNG" width=250 alt="Icon"/>
-  <img src="screenshots/screenshot_2.PNG" width=250 alt="Icon"/>
-  <img src="screenshots/screenshot_3.PNG" width=250 alt="Icon"/>
-  <img src="screenshots/screenshot_4.PNG" width=250 alt="Icon"/>
+  <img src="https://raw.githubusercontent.com/Nelkit/NKAlert/master/screenshots/screenshot_1.PNG" width=250 alt="Icon"/>
+  <img src="https://raw.githubusercontent.com/Nelkit/NKAlert/master/screenshots/screenshot_2.PNG" width=250 alt="Icon"/>
+  <img src="https://raw.githubusercontent.com/Nelkit/NKAlert/master/screenshots/screenshot_3.PNG" width=250 alt="Icon"/>
+  <img src="https://raw.githubusercontent.com/Nelkit/NKAlert/master/screenshots/screenshot_4.PNG" width=250 alt="Icon"/>
 </p>
 
 
@@ -35,6 +35,8 @@ let alert = NKAlert(title: "Success Example", description: "This is a example wi
 alert.setButtons(titleOk: "OK")
 alert.show(animated: true, completion: {})
 ```
+
+<img src="https://raw.githubusercontent.com/Nelkit/NKAlert/master/screenshots/success_1.gif" width=250 alt="Icon"/>
 
 ## License
 
